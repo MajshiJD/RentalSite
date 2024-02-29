@@ -1,0 +1,308 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+
+
+}
+
+.photo-background {
+    background-image: url("https://europeinwinter.com/wp-content/uploads/2022/08/iStock-1357501926.jpeg");
+    background-size: cover;
+    background-position: center;
+
+}
+
+.hero {
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.login-button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.about-us {
+    max-width: 800px;
+    margin: 20px auto;
+    margin-bottom: 0px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+.listing-button-container {
+    text-align: center;
+}
+
+main {
+
+    flex-grow: 1;
+}
+
+h2 a {
+    color: #000;
+
+}
+
+h2 a:hover {
+
+    color: #707070;
+
+}
+
+.small-button {
+    padding: 0.5em 1em;
+    font-size: 0.8em;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.small-button-listing {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.small-button-listing-conf {
+    padding: 0.73em 1.56em;
+    font-size: 1em;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+}
+
+section {
+    padding: 1em;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 1em;
+    margin: 1em;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+    align-items: center;
+    justify-content: center;
+}
+
+.product-in-product-section {
+    border: 1px solid #ddd;
+    padding: 1em;
+    margin: 1em;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
+    width: 70vh;
+
+
+}
+
+.product-in-product-section img {
+    width: 100%; /* Make the image fill its container */
+    height: 40vh; /* Set a fixed height for all images */
+    object-fit: contain;
+    transition: 0.3s linear;
+
+
+}
+
+.product img {
+
+    width: 100%; /* Make the image fill its container */
+    height: 250px; /* Set a fixed height for all images */
+    object-fit: contain;
+    transition: 0.3s linear;
+
+}
+
+.product .product_img:hover img {
+
+    width: 100%; /* Make the image fill its container */
+    height: 250px; /* Set a fixed height for all images */
+
+    transform: scale(1.8);
+
+
+}
+
+
+@media (min-width: 600px) {
+    section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .product {
+        flex: 0 1 calc(30% - 2em);
+    }
+}
+
+.vehicle-page-section {
+    display: flex;
+}
+
+.comment-section {
+    width: 30%; /* Adjust the width as needed */
+    box-sizing: border-box; /* Include padding and border in the total width */
+    padding: 20px; /* Adjust the padding as needed */
+}
+
+.product_section {
+    width: 70%; /* Adjust the width as needed */
+    box-sizing: border-box; /* Include padding and border in the total width */
+    padding: 20px; /* Adjust the padding as needed */
+
+}
+
+hr.before-comm {
+
+    height: 2px; /* Set the height/thickness of the line */
+    background-color: #000000;
+    margin: 20px 0;
+}
+
+input[name='body'] {
+
+    border-color: #4caf50;
+    font-size: 2vh;
+    width: 65%;
+
+}
+
+input[name='button'] {
+
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 20px;
+    border-radius: 5px;
+
+}
+
+
+a.delete-button {
+    padding: 0.5em 1em;
+    font-size: 0.7em;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+
+    display: inline-block;
+    margin-left: auto;
+
+}
+
+.delete-button-container {
+    text-align: right;
+}
+
+.create-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    max-height: 85vh;
+}
+
+.create-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[name='submit_creating'] {
+
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border-color: transparent;
+
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+}
+
+.disabled-login-button {
+    display: inline-block;
+    background-color: #A9A9A9;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+input[name='submit_creating']:hover {
+
+    display: inline-block;
+    background-color: #4CAF50;
+    color: #ffb;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border-color: transparent;
+}
