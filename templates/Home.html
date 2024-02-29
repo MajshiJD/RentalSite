@@ -1,0 +1,43 @@
+{% extends 'Main.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WAP Rental Site</title>
+</head>
+<body>
+
+
+{% block content %}
+    <div class="photo-background">
+        <div class="hero">
+            <div class="hero-content">
+                {% if request.user.is_authenticated %}
+                    <h1>Welcome {{ request.user.name }}</h1>
+                    <p>Find the perfect rental for your needs.</p>
+
+                {% else %}
+                    <h1>Welcome to Your Rental Site</h1>
+                    <p>Find the perfect rental for your needs.</p>
+                    <a href="{% url 'loginpage' %}" class="login-button">Login</a>
+                    <a href="{% url 'register' %}" class="login-button">Sign up</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <section class="about-us">
+
+            <p>Your Rental Site is dedicated to providing high-quality rental listings for a seamless booking
+                experience. Explore our diverse range of cars, boats, planes and bicycles and make your reservation
+                today.</p>
+        </section>
+    </div>
+    {% include 'footer.html' %}
+{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% load custom_filters %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'UserProfile.css' %}">
+</head>
+<body>
+
+{% include 'navbar_for_profile.html' %}
+<div class="info">
+    <h1 class="user-name"> Hi {{ user.name }}!</h1>
+    <p class="created-date">User since: {{ user.created }}</p>
+    <p>Currently you owe: ${{ user.spending }}</p>
+    <p>Currently you are owed: ${{ user.earning }}</p>
+    <a href="{% url 'add_rental' %}" class="small-button">Add vehicle</a>
+</div>
+<section class="profile-section">
+
+    <div class="profile-info">
+
+
+        <h2>Your vehicles:</h2>
+        {% for vehicle in vehicles %}
+            <div class="product">
+                <div class="product_img"><img src={{ vehicle.photo_URL }} alt={{ vehicle.name }} ></div>
+                <h2><a href="/vehicle/{{ vehicle.id }}">{{ vehicle.name }}</a></h2>
+                <p>Localization: {{ vehicle.localization }}</p>
+                <p>Price: ${{ vehicle.price }}/day</p>
+                {% if vehicle.is_rented %}
+                    <p>Currently rented by: @ {{ vehicle.currently_rented_by.username }}
+                        since {{ vehicle.rent_start }}</p>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                    {% if request.user != vehicle.owner %}
+
+                        <div class="listing-button-container"><a href="/vehicle/{{ vehicle.id }}"
+                                                                 class="small-button-listing">Rent now!</a></div>
+
+                    {% else %}
+                        <div class="listing-button-container">
+                            <a href="{% url 'update_rental' vehicle.id %}" class="small-button-listing">Edit listing</a>
+                            <a href="{% url 'delete_rental' vehicle.id %}" class="small-button-listing">Delete
+                                listing</a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endfor %}
+
+
+    </div>
+
+    <div class="profile-info">
+
+
+        <h2>You currently rent:</h2>
+        {% for vehicle in rented_vehicles %}
+            <div class="product">
+                <div class="product_img"><img src={{ vehicle.photo_URL }} alt={{ vehicle.name }} ></div>
+                <h2><a href="/vehicle/{{ vehicle.id }}">{{ vehicle.name }}</a></h2>
+                <p>Localization: {{ vehicle.localization }}</p>
+                <p>Price: ${{ vehicle.price }}/day</p>
+                <p>Rented from @ {{ vehicle.owner.username }} for {{ vehicle.rent_start|get_days }} day(s)</p>
+                {% if request.user.is_authenticated %}
+                    {% if request.user != vehicle.owner %}
+
+                        {% if request.user == vehicle.currently_rented_by %}
+                            <div class="listing-button-container"><a href="{% url 'stop-rent' vehicle.id %}"
+                                                                     class="small-button-listing">Stop renting</a></div>
+                        {% endif %}
+                    {% else %}
+
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% include 'footer.html' %}
+
+</body>
+</html>

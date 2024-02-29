@@ -1,0 +1,74 @@
+{% extends 'Main.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+    <br>
+
+    <section class="vehicle-page-section">
+        <div class="product-section">
+            <div class="product-in-product-section">
+                <div class="product_img">
+                    <img src={{ items.photo_URL }}>
+                </div>
+                <h2> {{ items.name }}</h2>
+                <p>Product ID: {{ items.id }}</p>
+                <p>Price: ${{ items.price }}/day</p>
+                <p>Owner: {{ items.owner }}</p>
+                {% if items.is_rented %}
+
+                    <div class="listing-button-container"><a href="#" class="disabled-login-button">Vehicle is currently
+                        rented </a></div>
+                    {% if request.user == items.currently_rented_by %}
+                        <p>You rent this product since {{ items.rent_start }}, it's {{ items.rent_start|get_days }}
+                            days!</p>
+
+                    {% endif %}
+
+                {% else %}
+                    <div class="listing-button-container"><a href="{% url 'start-rent' items.id %}"
+                                                             class="login-button">Rent vehicle</a></div>
+
+
+                {% endif %}
+
+
+            </div>
+        </div>
+        <div class="comment-section">
+            <div class='comment-wrapper'>
+                <h1>Comments:</h1>
+                <hr class="before-comm">
+
+                {% for comment in comments %}
+                    <div>
+                        <h6>@ {{ comment.user }} --- {{ comment.created|timesince }} ago</h6>
+                        <p>{{ comment.text }}</p>
+                        {% if request.user == comment.user %}
+                            <div class="delete-button-container"><a class='delete-button'
+                                                                    href="{% url 'delete_comment' comment.id %}">Delete
+                                comment</a></div>
+                        {% endif %}
+
+
+                        <hr class="after-comm">
+                    </div>
+                {% endfor %}
+            </div>
+            {% if request.user.is_authenticated %}
+                <div class="comment-form">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <input type="text" name="body" placeholder="Write your comment!">
+
+                </form>
+            {% endif %}
+            </div>
+        </div>
+
+
+    </section>
+
+    {% include 'footer.html' %}
+
+{% endblock %}
+

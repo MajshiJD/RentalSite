@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% extends 'Main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+    <section>
+        {% for item in items %}
+
+            <div class="product">
+                <div class="product_img"><img src={{ item.photo_URL }} alt={{ item.name }} ></div>
+                <h2><a href="/vehicle/{{ item.id }}">{{ item.name }}</a></h2>
+                <p>Localization: {{ item.localization }}</p>
+                <p>Price: ${{ item.price }}/day</p>
+
+                {% if request.user.is_authenticated %}
+                    {% if request.user != item.owner %}
+
+                        {% if item.is_rented %}
+
+                            <div class="listing-button-container"><a href="#" class="disabled-login-button">Vehicle is
+                                currently unavaible </a></div>
+
+                        {% else %}
+                            <div class="listing-button-container"><a href="/vehicle/{{ item.id }}"
+                                                                     class="small-button-listing">Rent now!</a></div>
+                        {% endif %}
+
+
+                    {% else %}
+                        <div class="listing-button-container">
+                            <a href="{% url 'update_rental' item.id %}" class="small-button-listing">Edit listing</a>
+                            <a href="{% url 'delete_rental' item.id %}" class="small-button-listing">Delete listing</a>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="listing-button-container"><a href="{% url 'loginpage' %}" class="small-button-listing">Rent
+                        now!</a></div>
+                {% endif %}
+            </div>
+
+        {% endfor %}
+    </section>
+    {% include 'footer.html' %}
+{% endblock %}
+
+</body>
+</html>

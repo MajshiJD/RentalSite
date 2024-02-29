@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'messages.css' %}">
+</head>
+<body>
+<script src="{% static 'messages.js' %}"></script>
+{% if messages %}
+
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+
+{% endif %}
+
+
+</body>
+</html>

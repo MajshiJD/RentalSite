@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <title>Login Page</title>
+</head>
+<body>
+{% include 'navbar.html' %}
+{% block content %}
+    <div class="login-container">
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+        <h2>Login</h2>
+
+
+        <!-- appname/templates/registration/login.html -->
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+
+
+    </div>
+{% endblock %}
+
+</body>
+</html>

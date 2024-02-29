@@ -1,0 +1,29 @@
+{% extends 'Main.html' %}
+
+{% block content %}
+
+    <div class="product">
+        {% if obj.is_rented %}
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                <div class="listing-button-container">
+                    <p> Are you sure you want to rent "{{ obj }}" for ${{ obj.price }} per day?</p>
+                    <input type="submit" value="Confirm" name='submit_creating'>
+                    <a href="{{ request.META.HTTP_REFERER }}" class="small-button-listing-conf">Go back</a>
+                </div>
+
+            </form>
+        {% else %}
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="listing-button-container">
+                    <p> Are you sure you want to stop renting {{ obj }}?</p>
+                    <input type="submit" value="Confirm" name='submit_creating'>
+                    <a href="{{ request.META.HTTP_REFERER }}" class="small-button-listing-conf">Go back</a>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+
+{% endblock content %}

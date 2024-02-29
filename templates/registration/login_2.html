@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <title>Login Page</title>
+</head>
+<body>
+
+{% block content %}
+    {% include 'navbar_for_profile.html' %}
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{% static 'messages.js' %}"></script>
+    {% if page == 'login' %}
+
+        {% include 'messages.html' %}
+
+        <div class="login-container">
+
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                <label>Username:</label>
+
+                <input type="email" name="email" placeholder="Email" required>
+                <label>Password:</label>
+
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Login" name='button'>
+
+            </form>
+
+            <br>
+            <p>Haven't signed up yet?</p>
+            <a href="{% url 'register' %}" class="login-button">Register</a>
+        </div>
+    {% else %}
+        <div class='login-container'>
+            <h1>Register</h1>
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+                <input type="submit" value="Register" name='button'>
+
+            </form>
+            <p>Signed up yet?</p>
+            <a href="{% url 'loginpage' %}" class="login-button">Login</a>
+        </div>
+    {% endif %}
+
+    <script src="{% static 'messages.js' %}"></script>
+{% endblock %}
+</body>
+</html>
